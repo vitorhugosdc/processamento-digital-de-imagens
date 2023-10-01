@@ -49,9 +49,33 @@ def alteraFaixaMatizes(caminho_img, m, x):
     plt.tight_layout()
     plt.show()
 
-# Solicitando os valores de m e x do usuário.
+def selecionar_imagem():
+    print("Selecione uma das imagens testadas:")
+    print("1 - circulo.png")
+    print("2 - passaros.jpg")
+    print("3 - camaleao.jpg")
+    print("4 - mascara.jpg")
+    print("5 - Inserir seu próprio caminho de imagem")
+
+    opcao = input("Digite o número correspondente à imagem desejada (1-5): ")
+
+    if opcao == "1":
+        return "circulo.png"
+    elif opcao == "2":
+        return "passaros.jpg"
+    elif opcao == "3":
+        return "camaleao.jpg"
+    elif opcao == "4":
+        return "mascara.jpg"
+    elif opcao == "5":
+        return input("Digite o caminho completo da sua imagem: ")
+    else:
+        print("Opção inválida. Por favor, escolha novamente.")
+        return selecionar_imagem()
+
+caminho_img = selecionar_imagem()
+
 m = int(input("Digite o valor de m: "))
 x = int(input("Digite o valor de x: "))
 
-caminho_img = "passaros.jpg"
 alteraFaixaMatizes(caminho_img, m, x)
