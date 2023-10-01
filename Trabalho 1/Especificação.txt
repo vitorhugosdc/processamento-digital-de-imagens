@@ -1,0 +1,36 @@
+TRABALHO UM : ALTERAÇÃO DE FAIXA DE MATIZES EM UMA IMAGEM NO SISTEMA HSV
+ALTERAÇÃO DE FAIXA DE MATIZES EM UMA IMAGEM NO SISTEMA HSV
+
+O objetivo deste trabalho é implementar e testar um programa que receba uma imagem colorida e realize nesta uma alteração em uma faixa de valores de matizes (Hue) na imagem representada no sistema de cor HSV.
+
+O programa deve receber os seguintes parâmetros:
+
+uma imagem de entrada a, colorida.
+um valor inteiro de matiz m (0 <= m < 360);
+um valor inteiro x. 
+Inicialmente, após ser carregada, a imagem de entrada a estará representada no sistema RGB (atenção: dependendo da função utilizada para carregar a imagem, esta estará representada no sistema BGR. Ou seja, é o sistema RGB, porém, com as bandas trocadas).
+
+Você deve converter a imagem a para o sistema HSV. Em seguida, você deve manipular somente a banda H, de matiz. Você deve substituir todas as matizes no intervalo [m - x, m + x] por suas matizes inversas. Isto é, se a matiz q está no intervalo, você deve substituí-la pela matiz q + 180.
+
+Após as alterações serem realizadas, você deve retornar a imagem para o sistema RGB. Esta será a imagem de saída gerada pelo programa.
+
+Algumas observações:
+
+Preste atenção em que ordem as bandas do sistema RGB estão, quando a imagem for carregada.
+Uma sugestão para a conversão entre sistemas de cor é a função cv2.cvtcolor. Leia atentamente a descrição da função. Em particular na representação do Hue quando a imagem de entrada a for 8-bits.
+Ao calcular as matizes que estão no intervalo [m - x, m + x], lembre-se que não haverá ângulos negativos e com valores maiores que 360 graus. Trate adequadamente estes valores de matiz. 
+Este trabalho NÃO É a aplicação de uma função pronta. Você deve desenvolver sua própria solução, mas pode utilizar funções auxiliares do OpenCV e do scikit-image em sua implementação. 
+
+O método deve ser implementado em Python 3.x, usando-se a biblioteca Numpy. Use a biblioteca OpenCV ou scikit-image para carregar/salvar/mostrar as imagens.
+
+Este trabalho deve trabalhar com conceitos de fatiamento e indexação da biblioteca Numpy, estudados em sala de aula. Trabalhos que utilizarem estruturas de repetição valerão metade da nota.
+
+Este programas será corrigido utilizando o Spyder 4.2.0. CERTIFIQUE-SE que o programa esteja rodando antes de enviá-lo. CERTIFIQUE-SE que as imagens de teste foram enviadas junto com o código-fonte e que este rode com as imagens de teste no mesmo diretório do fonte.
+
+Deverá constar no relatório um texto introdutório explicando a teoria considerada no trabalho, o código-fonte, as imagens resultantes de um ou mais experimentos de comparação e a bibliografia consultada.
+
+Para fins de ilustração e comparação, acrescente ao texto diversas imagens geradas a partir de diversos parâmetros m e x.
+
+O arquivo a ser entregue deve ser compactado (.zip) e conter o relatório, o código-fonte e as imagens de teste usadas para o relatório.
+
+Este trabalho pode ser realizado em dupla.
