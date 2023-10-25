@@ -64,7 +64,6 @@ def main():
     img_path = selecionar_imagem()
     k = float(input("Digite o valor de k: "))
     show_comparison(img_path, k)
-    print(f"Imagens processadas e salvas na pasta 'resultados'.")
 
 if __name__ == "__main__":
     main()
