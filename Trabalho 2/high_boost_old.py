@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+import os
 
 def high_boost_filtering(img_path, k=4.5, blur_mask_size=(3, 3)):
     # Carregar a imagem
@@ -22,25 +22,26 @@ def high_boost_filtering(img_path, k=4.5, blur_mask_size=(3, 3)):
     #img_highboost = g_x_y
     img_highboost = cv2.addWeighted(img, 1, mask, k, 0)
     
-    return img, img_blurred, mask, img_highboost
+    return img_highboost
 
-def show_individual_image(img, title):
-    plt.figure(figsize=(6,6))
-    plt.imshow(img, cmap='gray')
-    plt.title(title)
-    plt.axis('off')
-    plt.tight_layout(pad=0)
-    plt.subplots_adjust(left=0, right=1, top=0.95, bottom=0)
+def save_comparison(img_path, k=4.5):
+    # Garantir que a pasta "resultados" exista
+    if not os.path.exists("resultados"):
+        os.mkdir("resultados")
     
-def show_comparison(img_path, k=4.5):    
-    original_img, blurred_img, mask, highboost_img = high_boost_filtering(img_path, k)
-
-    show_individual_image(original_img, "Original Image")
-    show_individual_image(blurred_img, "Blurred Image")
-    show_individual_image(mask, "Mask")
-    show_individual_image(highboost_img, "Highboost Image")
-
-    plt.show()
+    original_img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+    highboost_img = high_boost_filtering(img_path, k)
+    
+    # Definir nomes de arquivo em formato .jpg
+    original_filename = os.path.splitext(os.path.basename(img_path))[0] + ".jpg"
+    enhanced_filename = "enhanced_k{}_".format(k) + os.path.splitext(os.path.basename(img_path))[0] + ".jpg"
+    
+    # Definir nomes de arquivo
+    #original_filename = os.path.basename(img_path)
+    #enhanced_filename = "enhanced_k{}_".format(k) + original_filename
+    
+    cv2.imwrite(os.path.join("resultados", original_filename), original_img)
+    cv2.imwrite(os.path.join("resultados", enhanced_filename), highboost_img)
 
 def selecionar_imagem():
     print("Selecione uma das imagens:")
@@ -63,7 +64,7 @@ def selecionar_imagem():
 def main():
     img_path = selecionar_imagem()
     k = float(input("Digite o valor de k: "))
-    show_comparison(img_path, k)
+    save_comparison(img_path, k)
     print(f"Imagens processadas e salvas na pasta 'resultados'.")
 
 if __name__ == "__main__":
